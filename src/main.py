@@ -4,8 +4,8 @@ You will run this project from here, so make sure to set things up and return va
 Hint: Pay attention to the print statements below for both variable names and kinda of values you should return in the other files
 '''
 import numpy as np
-from src.preprocessing import load_data, process_data
-from src.metrics_calculation import calculate_metrics, calculate_sklearn_metrics
+from preprocessing import load_data, process_data
+from metrics_calculation import calculate_metrics, calculate_sklearn_metrics
 
 def main():
 

@@ -60,6 +60,7 @@ def calculate_metrics(model_pred_df, genre_list, genre_true_counts, genre_tp_cou
     #Calcualte precision
     micro_precision = tp_sum / (tp_sum + fp_sum)
     #print(micro_precision)
+    
 
     #I am guessing that the blank genres are false negatives otherwise its zero
     #Calculate recall 
@@ -72,10 +73,15 @@ def calculate_metrics(model_pred_df, genre_list, genre_true_counts, genre_tp_cou
     micro_f1 = (2 * top) / (2 * bottom) 
     #print(micro_f1)
 
-    mytuple = (micro_precision, micro_recall, micro_f1)
-    macro_prec_list = 1
-    macro_recall_list = 1
-    macro_f1_list = 1
+    new_prec= fp_sum / (tp_sum + fp_sum)
+    new_recall = fp_sum / (tp_sum + genre_fp_counts[''])
+    
+
+
+    #mytuple = (micro_precision, micro_recall, micro_f1)
+    macro_prec_list =(micro_precision + new_prec)/2
+    macro_recall_list = (micro_recall + new_recall)/2
+    macro_f1_list = (macro_prec_list * macro_recall_list)/(macro_prec_list + macro_recall_list)
     #return mytuple,
     return micro_precision, micro_recall, micro_f1, macro_prec_list, macro_recall_list, macro_f1_list 
     
@@ -121,13 +127,13 @@ def calculate_sklearn_metrics(model_pred_df, genre_list):
     #print(pred_matrix)
     #print(true_matrix)
     macro_prec,macro_rec,macro_f1,x = precision_recall_fscore_support(true_matrix,pred_matrix,average='macro')
-    print(macro_prec)
-    print(macro_rec)
-    print(macro_f1)
+    #print(macro_prec)
+    #print(macro_rec)
+    #print(macro_f1)
     micro_prec,micro_rec,micro_f1,y = precision_recall_fscore_support(true_matrix,pred_matrix,average='micro')
-    print(micro_prec)
-    print(micro_rec)
-    print(micro_f1)
+    #print(micro_prec)
+    #print(micro_rec)
+    #print(micro_f1)
     return macro_prec,macro_rec,macro_f1,micro_prec,micro_rec,micro_f1
     
     

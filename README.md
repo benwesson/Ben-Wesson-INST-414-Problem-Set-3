@@ -1,5 +1,7 @@
 PROBLEM SET #3: EVALUATION METRICS
-
+____________________________________________________________________
+I was getting odd import errors so I moved main.py to the src folder
+____________________________________________________________________
 Instructions:
 
 - Clone the Problem Set code package from GitHub:
@@ -20,3 +22,5 @@ When you're done:
 Submission: You will submit the GitHub URL for this repo in ELMS.
 
 Grading: Ali and I will look to make sure you've output the correct print statements. We will only run main.py, so make sure to stucture this correctly. Credit will be given for adhering to the course's Code Standards and Data Standards, using GitHub correctly, and producing the correct output, among other considerations.
+
+
