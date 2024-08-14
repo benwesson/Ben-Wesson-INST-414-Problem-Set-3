@@ -1,6 +1,7 @@
 PROBLEM SET #3: EVALUATION METRICS
 ____________________________________________________________________
-I was getting odd import errors so I moved main.py to the src folder
+1.I was getting odd import errors so I moved main.py to the src folder.
+2.There will be warnings in the output but it will still show the metrics.
 ____________________________________________________________________
 Instructions:
 
