@@ -10,6 +10,9 @@ import numpy as np
 from sklearn.metrics import precision_recall_fscore_support
 import pandas as pd
 
+from preprocessing import load_data,process_data
+model_pred_df,genres_df = load_data()
+
 def calculate_metrics(model_pred_df, genre_list, genre_true_counts, genre_tp_counts, genre_fp_counts):
     '''
     Calculate micro and macro metrics
@@ -97,3 +100,36 @@ def calculate_sklearn_metrics(model_pred_df, genre_list):
     '''
 
     # Your code here
+    """
+    y_true = np.array(['cat', 'dog', 'pig', 'cat', 'dog', 'pig'])
+    y_pred = np.array(['cat', 'pig', 'dog', 'cat', 'cat', 'dog'])
+    return precision_recall_fscore_support(y_true, y_pred, average='macro')
+    
+
+    """
+    pred_rows = model_pred_df['predicted'].tolist()
+    true_rows = model_pred_df['correct?'].tolist()
+
+   
+
+    
+
+    pred_matrix = pd.DataFrame(pred_rows)
+    true_matrix = pd.DataFrame(true_rows)
+    true_matrix.replace(0,'no',inplace=True)
+    true_matrix.replace(1,'Drama',inplace=True)
+    #print(pred_matrix)
+    #print(true_matrix)
+    macro_prec,macro_rec,macro_f1,x = precision_recall_fscore_support(true_matrix,pred_matrix,average='macro')
+    print(macro_prec)
+    print(macro_rec)
+    print(macro_f1)
+    micro_prec,micro_rec,micro_f1,y = precision_recall_fscore_support(true_matrix,pred_matrix,average='micro')
+    print(micro_prec)
+    print(micro_rec)
+    print(micro_f1)
+    return macro_prec,macro_rec,macro_f1,micro_prec,micro_rec,micro_f1
+    
+    
+
+calculate_sklearn_metrics(model_pred_df,genres_df)
