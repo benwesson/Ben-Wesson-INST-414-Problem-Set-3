@@ -39,7 +39,42 @@ def calculate_metrics(model_pred_df, genre_list, genre_true_counts, genre_tp_cou
     '''
 
     # Your code here
+    tp_list = []
+    fp_list = []
 
+    #Sum true positives
+    for item in genre_tp_counts:
+        tp_list.append(genre_tp_counts[item])
+    tp_sum = sum(tp_list)
+    #print(tp_sum)
+    
+    #Sum false positives
+    for item in genre_fp_counts:
+        fp_list.append(genre_fp_counts[item])
+    fp_sum = sum(fp_list)
+    #print(fp_sum)
+
+    #Calcualte precision
+    micro_precision = tp_sum / (tp_sum + fp_sum)
+    #print(micro_precision)
+
+    #I am guessing that the blank genres are false negatives otherwise its zero
+    #Calculate recall 
+    micro_recall = tp_sum / (tp_sum + genre_fp_counts[''])
+    #print(micro_recall)
+
+    #Calcualte F1 score
+    top = (micro_precision * micro_recall)
+    bottom =  (micro_precision + micro_recall)
+    micro_f1 = (2 * top) / (2 * bottom) 
+    #print(micro_f1)
+
+    mytuple = (micro_precision, micro_recall, micro_f1)
+    macro_prec_list = 1
+    macro_recall_list = 1
+    macro_f1_list = 1
+    #return mytuple,
+    return micro_precision, micro_recall, micro_f1, macro_prec_list, macro_recall_list, macro_f1_list 
     
 def calculate_sklearn_metrics(model_pred_df, genre_list):
     '''
